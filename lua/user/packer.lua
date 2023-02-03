@@ -12,15 +12,27 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- colors
   use({
 	  'rose-pine/neovim',
 	  as = 'rose-pine',
 	  config = function()
-		  require("rose-pine").setup()
-		  vim.cmd('colorscheme rose-pine')
+		  -- require("rose-pine").setup()
+		  -- vim.cmd('colorscheme rose-pine')
 	  end
   })
+  use 'gruvbox-community/gruvbox'
+  use 'B4mbus/oxocarbon-lua.nvim'
+  use 'savq/melange-nvim'
 
+  -- Usability
+  use 'tpope/vim-surround'       -- surround object
+  use 'tpope/vim-eunuch'         -- rename or move files
+  use 'easymotion/vim-easymotion' -- easy motion
+
+  use 'windwp/nvim-autopairs'
+  use 'christoomey/vim-tmux-navigator'
   use 'preservim/nerdtree'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -28,6 +40,9 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+
+  -- LSP
+  use "folke/neodev.nvim"
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',

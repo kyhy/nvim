@@ -6,9 +6,16 @@ vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
+
+-- easymotion
+vim.keymap.set('n', 's', '<Plug>(easymotion-s)')
+vim.g.EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+
+-- RIP esc key
+vim.keymap.set('i', 'jj', '<ESC>')
 
 -- from primeagen
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
