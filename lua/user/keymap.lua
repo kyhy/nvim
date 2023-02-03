@@ -5,12 +5,30 @@ local opts = { noremap = true }
 vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
 vim.keymap.set('n', '<leader>w', ':write<CR>')
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>q', ':bp\\|bd #<CR> ', opts)
 vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
 
+-- select entire file
+vim.keymap.set('n', '<leader>vef', 'ggVG', opts)
+
+-- create new file where current buffer is
+vim.keymap.set('n', '<leader>cf', ':e <C-R>=expand("%:p:h") . "/" <CR>', opts)
+
+-- unset last search pattern register by hitting return
+vim.keymap.set('n', '<cr>', ':noh<CR><CR>:<backspace>', opts)
+
+-- vim-tmux-navigator
+vim.keymap.set('n', '<c-h>', ':TmuxNavigateLeft<cr>', opts)
+vim.keymap.set('n', '<c-j>', ':TmuxNavigateDown<cr>', opts)
+vim.keymap.set('n', '<c-k>', ':TmuxNavigateUp<cr>', opts)
+vim.keymap.set('n', '<c-l>', ':TmuxNavigateRight<cr>', opts)
 -- easymotion
 vim.keymap.set('n', 's', '<Plug>(easymotion-s)')
 vim.g.EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+
+-- move vertically by visual line
+vim.keymap.set('n', 'j', 'gj', opts)
+vim.keymap.set('n', 'k', 'gk', opts)
 
 -- RIP esc key
 vim.keymap.set('i', 'jj', '<ESC>')

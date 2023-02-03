@@ -24,3 +24,5 @@ end)
 -- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
+vim.keymap.set('n', '<leader>bf', ':Telescope buffers<cr>', opts)
+vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)

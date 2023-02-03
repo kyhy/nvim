@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/melange-nvim",
     url = "https://github.com/savq/melange-nvim"
   },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
   nerdtree = {
     loaded = true,
     path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/nerdtree",

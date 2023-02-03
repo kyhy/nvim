@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-" if has('statusline')
+if has('statusline')
   let s:gb = {}
   let s:gb.left_bg   = '#CC241D'
   let s:gb.left_fg   = '#FBF1C7'
@@ -85,4 +85,4 @@ scriptencoding utf-8
 "      autocmd User FerretAsyncFinish call statusline#async_finish()
 "    augroup END
 "  endif
-" endif
+ endif

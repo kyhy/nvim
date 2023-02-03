@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'       -- surround object
   use 'tpope/vim-eunuch'         -- rename or move files
   use 'easymotion/vim-easymotion' -- easy motion
+  use 'christoomey/vim-tmux-navigator'
 
   use 'windwp/nvim-autopairs'
   use 'christoomey/vim-tmux-navigator'
