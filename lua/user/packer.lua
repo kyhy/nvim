@@ -1,5 +1,4 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -7,33 +6,42 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    -- or                            , branch = '0.1.x',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- colors
   use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  -- require("rose-pine").setup()
-		  -- vim.cmd('colorscheme rose-pine')
-	  end
+    'rose-pine/neovim',
+    as = 'rose-pine',
   })
-  use 'gruvbox-community/gruvbox'
+  use 'sainnhe/gruvbox-material'
   use 'B4mbus/oxocarbon-lua.nvim'
   use 'savq/melange-nvim'
+  use 'rebelot/kanagawa.nvim'
+  use 'EdenEast/nightfox.nvim'
+  use 'wincent/pinnacle'
+
+  use({
+    'catppuccin/vim',
+    as = 'catppuccin',
+  })
 
   -- Usability
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   use 'tpope/vim-surround'       -- surround object
   use 'tpope/vim-eunuch'         -- rename or move files
   use 'easymotion/vim-easymotion' -- easy motion
   use 'christoomey/vim-tmux-navigator'
 
   use 'windwp/nvim-autopairs'
-  use 'christoomey/vim-tmux-navigator'
   use 'preservim/nerdtree'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -66,4 +74,15 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'}, -- Optional
 	  }
   }
+
+  vim.cmd.colorscheme("gruvbox-material")
+  -- vim.cmd.background("dark")
+  vim.cmd.colorscheme("duskfox")
+  -- vim.cmd.colorscheme("oxocarbon-lua")
+  -- vim.cmd.colorscheme("catppuccin_mocha")
+  -- vim.cmd.colorscheme("catppuccin_macchiato")
+  -- vim.cmd.colorscheme("catppuccin_frappe")
+  -- vim.cmd.colorscheme("catppuccin_latte")
 end)
+
+

@@ -2,23 +2,22 @@
 --
 local opts = { noremap = true }
 
--- telescope
+-- STARTL: telescope
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-
-
 vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'}})<cr>", opts)
 --vim.keymap.set('n', '<leader>ev', ":e ~/.config/nvim<cr>", opts)
 vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
 vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
 
-vim.keymap.set('n', '<C-p>', telescope.git_files, {})
 vim.keymap.set('n', '<leader>r', function()
-	telescope.grep_string({ search = vim.fn.input("Grep > ") });
+	telescope.grep_string({ search = vim.fn.input("Rg: ") });
 end)
+vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>bf', telescope.buffers, {})
 vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
+-- END: telescope
 
 vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
@@ -29,12 +28,13 @@ vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
 -- select entire file
 vim.keymap.set('n', '<leader>vef', 'ggVG', opts)
 
+vim.keymap.set('n', '<leader>cx', ':!chmod +x %<CR>', opts)
+
 -- create new file where current buffer is
 vim.keymap.set('n', '<leader>cf', ':e <C-R>=expand("%:p:h") . "/" <CR>', opts)
 
 -- unset last search pattern register by hitting return
 vim.keymap.set('n', '<cr>', ':noh<CR><CR>:<backspace>', opts)
-
 
 vim.keymap.set('n', '<leader>bf', ':Telescope buffers<cr>', opts)
 vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)

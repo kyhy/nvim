@@ -1,18 +1,28 @@
-scriptencoding utf-8
+" scriptencoding utf-8
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
 if has('statusline')
   let s:gb = {}
-  let s:gb.left_bg   = '#CC241D'
-  let s:gb.left_fg   = '#FBF1C7'
-  let s:gb.center_bg = '#3C3836'
-  let s:gb.center_fg = '#A89984'
-  let s:gb.right_bg  = '#A89984'
-  let s:gb.right_fg  = '#282828'
+  " gruvbox
+"  let s:gb.left_bg   = '#CC241D'
+"  let s:gb.left_fg   = '#FBF1C7'
+"  let s:gb.center_bg = '#3C3836'
+"  let s:gb.center_fg = '#A89984'
+"  let s:gb.right_bg  = '#A89984'
+"  let s:gb.right_fg  = '#282828'
+
+  " duskfox
+  let s:gb.left_fg   = '#65b1cd'
+  let s:gb.left_bg   = '#393552'
+  let s:gb.center_bg = '#393552'
+  let s:gb.center_fg = '#c6c2ef'
+  let s:gb.right_bg  = '#f6f2ee'
+  let s:gb.right_fg  = '#534c45'
 
   " ===== Left =====
   " Buffer number
-  execute 'hi User7 guibg='.s:gb.left_bg.' guifg='.s:gb.left_fg
+  execute 'hi User7 guibg='.s:gb.left_fg.' guifg='.s:gb.left_fg
   " Arrow bit
   execute 'hi User4 guibg='.s:gb.center_bg.' guifg='.s:gb.left_bg
 
@@ -81,8 +91,6 @@ if has('statusline')
 "    augroup WincentStatusline
 "      autocmd!
 "      autocmd ColorScheme * call statusline#update_highlight()
-"      autocmd User FerretAsyncStart call statusline#async_start()
-"      autocmd User FerretAsyncFinish call statusline#async_finish()
 "    augroup END
 "  endif
- endif
+endif

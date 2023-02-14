@@ -1,10 +1,15 @@
 function ColorMyPencils(color)
-    color = color or "oxocarbon-lua"
-	vim.cmd.colorscheme(color)
+  color = color or "oxocarbon-lua"
 
-	-- transparent background
-	-- vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
-	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None" })
+  -- gruvbox-material options
+  -- vim.g.gruvbox_material_background = "hard"
+  -- vim.g.gruvbox_material_dim_inactive_windows = 1
+  vim.cmd.colorscheme(color)
+  -- color = color or "oxocarbon-lua"
+
+  -- transparent background
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
+  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None" })
 end
 
-ColorMyPencils()
+-- ColorMyPencils("gruvbox-material")
