@@ -30,6 +30,10 @@ return require('packer').startup(function(use)
     as = 'catppuccin',
   })
 
+
+  -- UI
+  use 'nvim-tree/nvim-web-devicons'
+
   -- Usability
   use {
     'lewis6991/gitsigns.nvim',
@@ -37,12 +41,16 @@ return require('packer').startup(function(use)
       require('gitsigns').setup()
     end
   }
+  use "lukas-reineke/indent-blankline.nvim"
   use 'tpope/vim-surround'       -- surround object
   use 'tpope/vim-eunuch'         -- rename or move files
   use 'easymotion/vim-easymotion' -- easy motion
   use 'christoomey/vim-tmux-navigator'
 
-  use 'windwp/nvim-autopairs'
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
   use 'preservim/nerdtree'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -74,6 +82,10 @@ return require('packer').startup(function(use)
 		  {'L3MON4D3/LuaSnip'},             -- Required
 		  {'rafamadriz/friendly-snippets'}, -- Optional
 	  }
+  }
+  use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
   }
 
   -- vim.cmd.colorscheme("gruvbox-material")
