@@ -170,6 +170,11 @@ _G.packer_plugins = {
     path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
     url = "https://github.com/EdenEast/nightfox.nvim"
   },
+  ["no-clown-fiesta.nvim"] = {
+    loaded = true,
+    path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/no-clown-fiesta.nvim",
+    url = "https://github.com/aktersnurra/no-clown-fiesta.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/Users/spacefuture/.local/share/nvim/site/pack/packer/start/nvim-autopairs",

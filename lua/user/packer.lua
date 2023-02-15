@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use 'savq/melange-nvim'
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
+  use 'aktersnurra/no-clown-fiesta.nvim'
   use 'wincent/pinnacle'
 
   use({
@@ -75,9 +76,10 @@ return require('packer').startup(function(use)
 	  }
   }
 
-  vim.cmd.colorscheme("gruvbox-material")
+  -- vim.cmd.colorscheme("gruvbox-material")
   -- vim.cmd.background("dark")
   vim.cmd.colorscheme("duskfox")
+  -- vim.cmd.colorscheme("no-clown-fiesta")
   -- vim.cmd.colorscheme("oxocarbon-lua")
   -- vim.cmd.colorscheme("catppuccin_mocha")
   -- vim.cmd.colorscheme("catppuccin_macchiato")
