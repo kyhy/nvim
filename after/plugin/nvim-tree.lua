@@ -1,5 +1,5 @@
 local HEIGHT_RATIO = 0.8  -- You can change this
-local WIDTH_RATIO = 0.5   -- You can change this too
+local WIDTH_RATIO = 0.8   -- You can change this too
 
 -- require("nvim-tree").setup({
 --   sort_by = "case_sensitive",
@@ -47,4 +47,18 @@ require('nvim-tree').setup({
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
   },
+  -- actions = {
+  --   change_dir = {
+  --     enable = true,
+  --     global = true,
+  --     restrict_above_cwd = false,
+  --   },
+  -- },
+  -- update_focused_file = {
+  --   enable = true,
+  --   update_root = true,
+  --   ignore_list = {},
+  -- },
+  -- sync_root_with_cwd = true,
+  -- respect_buf_cwd = true,
 })

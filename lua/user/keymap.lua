@@ -7,7 +7,6 @@ local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'}})<cr>", opts)
---vim.keymap.set('n', '<leader>ev', ":e ~/.config/nvim<cr>", opts)
 vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
 vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
 
@@ -25,7 +24,28 @@ vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
 vim.keymap.set('n', ';', ':', opts)
 vim.keymap.set('n', ':', ';', opts)
 
-vim.keymap.set('n', '-', ':NvimTreeFindFile<CR>', opts)
+local tree = require('nvim-tree')
+local change_dir = require('nvim-tree.actions.root.change-dir')
+function FocusCurrentFolder()
+  local buf = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(buf)
+  local result = vim.fn.isdirectory(bufname)
+  local result2 = vim.fn.expand('%:p:h');
+  print(result2)
+  -- if result ~= 1 then
+  --   return
+  -- end
+
+  -- change_dir.force_dirchange(result2, false)
+  -- vim.cmd(":NvimTreeFindFile!")
+  tree.open({
+    path = result2,
+  })
+  -- tree.focus()
+end
+
+-- vim.keymap.set('n', '-', ':NvimTreeFindFile!<CR>', opts)
+-- vim.keymap.set('n', '-', FocusCurrentFolder, opts)
 vim.keymap.set('n', '<leader>t', ':TroubleToggle<CR>', opts)
 vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
