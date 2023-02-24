@@ -4,5 +4,6 @@ require("indent_blankline").setup {
     -- show_current_context_start = true,
     -- use_treesitter = false,
     -- use_treesitter_scope = false,
+    use_treesitter = true,
     use_treesitter_scope = true
 }

@@ -84,7 +84,9 @@ set.splitright = true
 -- ———————————
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldlevelstart = 4
+-- set.foldlevelstart = 4
+-- vim.opt.foldmethod = 'indent' -- not as cool as syntax, but faster
+-- vim.opt.foldtext = 'v:lua.user.foldtext()'
 
 -- — files, backups and undo —
 -- ———————————————————————————

@@ -1,5 +1,23 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
--- Only required if you have packer configured as `opt`
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -8,8 +26,12 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-live-grep-args.nvim' } },
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end
   }
+
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- colors
@@ -23,17 +45,21 @@ return require('packer').startup(function(use)
   use 'rebelot/kanagawa.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'aktersnurra/no-clown-fiesta.nvim'
-  use 'wincent/pinnacle'
-
   use({
     'catppuccin/vim',
     as = 'catppuccin',
   })
 
-
   -- UI
   use 'nvim-tree/nvim-web-devicons'
-
+  use "lukas-reineke/indent-blankline.nvim"
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
   -- Usability
   use {
     'lewis6991/gitsigns.nvim',
@@ -41,11 +67,34 @@ return require('packer').startup(function(use)
       require('gitsigns').setup()
     end
   }
-  use "lukas-reineke/indent-blankline.nvim"
   use 'tpope/vim-surround'       -- surround object
   use 'tpope/vim-eunuch'         -- rename or move files
   use 'easymotion/vim-easymotion' -- easy motion
   use 'christoomey/vim-tmux-navigator'
+  use 'echasnovski/mini.comment'
+  use 'wincent/pinnacle'         -- highlight objects
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   use {
     "windwp/nvim-autopairs",
@@ -87,6 +136,12 @@ return require('packer').startup(function(use)
     "SmiteshP/nvim-navic",
     requires = "neovim/nvim-lspconfig"
   }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
   -- vim.cmd.colorscheme("gruvbox-material")
   -- vim.cmd.background("dark")

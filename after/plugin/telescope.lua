@@ -53,10 +53,15 @@ require('telescope').setup {
         ["<M-p>"] = action_layout.toggle_preview,
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
+        -- ["<C-j>"] = actions.move_selection_next,
+        -- ["<C-k>"] = actions.move_selection_previous,
       },
     },
+    picker = {
+      layout_config = {
+        mirror = true 
+      }
+    }
   }
 }
 

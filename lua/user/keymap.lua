@@ -11,20 +11,27 @@ vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_fi
 vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
 vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
 
-vim.keymap.set('n', '<leader>r', function()
-	telescope.grep_string({ search = vim.fn.input("Rg: ") });
-end)
+-- vim.keymap.set('n', '<leader>r', function()
+-- 	telescope.grep_string({ search = vim.fn.input('Rg: ') });
+-- end)
+vim.keymap.set('n', '<leader>r', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>');
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
-vim.keymap.set('n', '<leader>bf', telescope.buffers, {})
+vim.keymap.set('n', '<leader>bf', "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
 vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
+-- vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)
 -- END: telescope
 
+-- swap ; and : for better ergonomics
+vim.keymap.set('n', ';', ':', opts)
+vim.keymap.set('n', ':', ';', opts)
+
+vim.keymap.set('n', '-', ':NvimTreeFindFile<CR>', opts)
+vim.keymap.set('n', '<leader>t', ':TroubleToggle<CR>', opts)
 vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
-vim.keymap.set('n', '<leader>w', ':write<CR>')
-vim.keymap.set('n', '<leader>q', ':bp\\|bd #<CR> ', opts)
-vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>')
-
+vim.keymap.set('n', '<leader>w', ':write<CR>', opts)
+vim.keymap.set('n', '<leader>q', ':Bdelete<CR> ', opts)
+vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>', opts)
 -- select entire file
 vim.keymap.set('n', '<leader>vef', 'ggVG', opts)
 
@@ -36,13 +43,13 @@ vim.keymap.set('n', '<leader>cf', ':e <C-R>=expand("%:p:h") . "/" <CR>', opts)
 -- unset last search pattern register by hitting return
 vim.keymap.set('n', '<cr>', ':noh<CR><CR>:<backspace>', opts)
 
-vim.keymap.set('n', '<leader>bf', ':Telescope buffers<cr>', opts)
-vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)
 -- vim-tmux-navigator
 vim.keymap.set('n', '<c-h>', ':TmuxNavigateLeft<cr>', opts)
 vim.keymap.set('n', '<c-j>', ':TmuxNavigateDown<cr>', opts)
 vim.keymap.set('n', '<c-k>', ':TmuxNavigateUp<cr>', opts)
 vim.keymap.set('n', '<c-l>', ':TmuxNavigateRight<cr>', opts)
+-- vim.keymap.set('n', '<c-->', ':BufferLineCyclePrev<cr>', opts)
+-- vim.keymap.set('n', '<c-=>', ':BufferLineCycleNext<cr>', opts)
 -- easymotion
 vim.keymap.set('n', 's', '<Plug>(easymotion-s)')
 vim.g.EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
@@ -93,8 +100,8 @@ vim.keymap.set("n", "Q", "<nop>")
 -- en{ previewer = false { previewer = false })
 
 -- lsp quick fix shit
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 

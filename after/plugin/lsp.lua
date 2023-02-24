@@ -1,4 +1,7 @@
--- Learn the keybindings, see :help lsp-zero-keybindings
+require("neodev").setup({
+  -- add any options here, or leave empty to use the default settings
+})-- Learn the keybindings, see :help lsp-zero-keybindings
+
 -- Learn to configure LSP servers, see :help lsp-zero-api-showcase
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
