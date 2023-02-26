@@ -20,6 +20,7 @@ local function gsubFn(src, target)
   end
 end
 
+-- prevent previewer throwing up opening up a large file
 local previewer_maker = function(filepath, bufnr, opts)
   opts = opts or {}
 
@@ -51,20 +52,33 @@ local previewer_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
+local adjust_pos = function(pos, ...)
+  for _, opts in ipairs { ... } do
+    opts.col = opts.col and opts.col + pos[1]
+    opts.line = opts.line and opts.line + pos[2]
+  end
+end
+
+local resolve = require "telescope.config.resolve"
+
 require('telescope.pickers.layout_strategies').horizontal_merged = function(picker, max_columns, max_lines, layout_config)
 	local layout = require('telescope.pickers.layout_strategies').horizontal(picker, max_columns, max_lines, layout_config)
 
-    layout.prompt.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
+  layout.prompt.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
 
-    layout.results.title = ''
-    layout.results.borderchars = { '─', '│', '─', '│', '├', '┤', "╯", "╰" }
-    layout.results.line = layout.results.line - 1
-    layout.results.height = layout.results.height + 1
+  layout.results.title = ''
+  layout.results.borderchars = { '─', '│', '─', '│', '├', '┤', "╯", "╰" }
+  layout.results.line = layout.results.line - 1
+  layout.results.height = layout.results.height + 1
 
-    if layout.preview then
-      layout.preview.title = ''
-      layout.preview.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
-    end
+  if layout.preview then
+    layout.preview.title = ''
+    layout.preview.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
+  else
+    layout.prompt.width = (max_columns + max_columns % 2) / 2
+    layout.results.width = (max_columns + max_columns % 2) / 2
+    -- layout.results.width = 100
+  end
 
 	return layout
 end

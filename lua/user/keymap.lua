@@ -1,15 +1,14 @@
 -- my shit
 --
 local opts = { noremap = true }
-
---———————————————————
--- START: telescope
---———————————————————
-local telescope = require('telescope.builtin')
-
 local function nnoremap(key, callback)
   vim.keymap.set('n', key, callback, { noremap = true })
 end
+
+--———————————————————
+-- START: Telescope
+--———————————————————
+local telescope = require('telescope.builtin')
 
 nnoremap('<leader>f', telescope.find_files)
 nnoremap('<leader>ev', function()
@@ -25,7 +24,22 @@ nnoremap('<leader>ea', function()
     hidden = true,
   })
 end)
+nnoremap('<leader>he', function()
+  telescope.help_tags({
+    previewer = false,
+  })
+end)
 
+nnoremap('<leader>bf', function()
+  telescope.buffers()
+end)
+--—————————————————
+-- END: Telescope
+--—————————————————
+
+--——————————————————
+-- START: Easypick
+--——————————————————
 nnoremap('<leader>p', ':Easypick<cr>')
 -- nnoremap('<leader>gf', function()
 --   telescope.git_files({
@@ -34,19 +48,13 @@ nnoremap('<leader>p', ':Easypick<cr>')
 --   })
 -- end)
 nnoremap('<leader>gf', ':Easypick Git Changed Files<cr>')
-
--- vim.keymap.set('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
--- vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'}})<cr>", opts)
+--————————————————
+-- END: Easypick
+--————————————————
 
 -- NOTE: Create a file ~/.zshenv and export variable ZDOTDIR=/path/to/dir.
 vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
--- vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
 vim.keymap.set('n', '<leader>r', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>');
-vim.keymap.set('n', '<leader>bf', "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
-vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
--- vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)
--- END: telescope
-
 
 -- swap ; and : for better ergonomics
 vim.keymap.set('n', ';', ':', opts)
