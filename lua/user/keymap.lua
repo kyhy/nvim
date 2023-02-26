@@ -23,6 +23,7 @@ nnoremap('<leader>ea', function()
     hidden = true,
   })
 end)
+nnoremap('<leader>ep', ':Easypick<cr>')
 -- nnoremap('<leader>gf', function()
 --   telescope.git_files({
 --     show_untracked = true,
