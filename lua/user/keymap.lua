@@ -2,7 +2,9 @@
 --
 local opts = { noremap = true }
 
--- STARTL: telescope
+--———————————————————
+-- START: telescope
+--———————————————————
 local telescope = require('telescope.builtin')
 
 local function nnoremap(key, callback)
@@ -23,7 +25,8 @@ nnoremap('<leader>ea', function()
     hidden = true,
   })
 end)
-nnoremap('<leader>ep', ':Easypick<cr>')
+
+nnoremap('<leader>p', ':Easypick<cr>')
 -- nnoremap('<leader>gf', function()
 --   telescope.git_files({
 --     show_untracked = true,
@@ -36,8 +39,8 @@ nnoremap('<leader>gf', ':Easypick Git Changed Files<cr>')
 -- vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'}})<cr>", opts)
 
 -- NOTE: Create a file ~/.zshenv and export variable ZDOTDIR=/path/to/dir.
-vim.keymap.set('n', '<leader>ez', ":eo ~/.zshrc<cr>", opts)
--- vim.keymap.set('n', '<leader>ea', ":eo ~/src/dotfiles<cr>", opts)
+vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
+-- vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
 vim.keymap.set('n', '<leader>r', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>');
 vim.keymap.set('n', '<leader>bf', "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
 vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
@@ -49,13 +52,13 @@ vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
 vim.keymap.set('n', ';', ':', opts)
 vim.keymap.set('n', ':', ';', opts)
 
-vim.keymap.set('n', '-', ':NvimTreeFindFile!<CR>', opts)
+-- vim.keymap.set('n', '-', ':NvimTreeFindFile!<CR>', opts)
 vim.keymap.set('n', '<leader>t', ':TroubleToggle<CR>', opts)
 vim.keymap.set('n', '<leader>\\', '<C-w>v', opts)
 vim.keymap.set('n', '<leader>-', '<C-w>s', opts)
 vim.keymap.set('n', '<leader>w', ':write<CR>', opts)
 vim.keymap.set('n', '<leader>q', ':Bdelete<CR> ', opts)
-vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>', opts)
+-- vim.keymap.set('n', '<leader>ps', ':PackerSync<CR>', opts)
 -- select entire file
 vim.keymap.set('n', '<leader>vef', 'ggVG', opts)
 
@@ -86,8 +89,6 @@ vim.keymap.set('n', 'k', 'gk', opts)
 vim.keymap.set('i', 'jj', '<ESC>')
 
 -- from primeagen
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
