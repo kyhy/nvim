@@ -3,6 +3,23 @@ local action_layout = require("telescope.actions.layout")
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 
+function compose(...)
+  local funcs = {...}
+  return function(x)
+    local result = x
+    for i = #funcs, 1, -1 do
+      result = funcs[i](result)
+    end
+    return result
+  end
+end
+
+function gsubFn(src, target) 
+  return function(path)
+    return string.gsub(path, src, target)
+  end
+end
+
 local previewer_maker = function(filepath, bufnr, opts)
   opts = opts or {}
 
@@ -34,6 +51,28 @@ local previewer_maker = function(filepath, bufnr, opts)
   }):sync()
 end
 
+require('telescope.pickers.layout_strategies').horizontal_merged = function(picker, max_columns, max_lines, layout_config)
+	local layout = require('telescope.pickers.layout_strategies').horizontal(picker, max_columns, max_lines, layout_config)
+
+    -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    -- layout.prompt.title = ''
+    -- layout.prompt.borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' }
+    -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+    layout.prompt.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
+
+    layout.results.title = ''
+    layout.results.borderchars = { '─', '│', '─', '│', '├', '┤', "╯", "╰" }
+    layout.results.line = layout.results.line - 1
+    layout.results.height = layout.results.height + 1
+
+    if layout.preview then
+      layout.preview.title = ''
+      layout.preview.borderchars = { '─', '│', '─', '│', "╭", "╮", "╯", "╰" }
+    end
+
+	return layout
+end
+
 -- check for any override
 -- options = require("core.utils").load_override(options, "nvim-telescope/telescope.nvim")
 require('telescope').setup({
@@ -63,7 +102,8 @@ require('telescope').setup({
     -- initial_mode = "insert",
     -- selection_strategy = "reset",
     sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
+    -- layout_strategy = "horizontal",
+    layout_strategy = "horizontal_merged",
     layout_config = {
       horizontal = {
         prompt_position = "top",
@@ -80,9 +120,17 @@ require('telescope').setup({
     file_ignore_patterns = { "node_modules" },
     -- file_sorter = require("telescope.sorters").get_fuzzy_file,
     -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    path_display = function(_, path) return string.gsub(path, "/Users/spacefuture", "~") end,
+    path_display = function(_, path) 
+      return compose(
+        gsubFn('~/src/dotfiles/files', '@dotfiles'),
+        gsubFn('/Users/spacefuture', '~')
+      )(path)
+
+      -- return string.gsub(string.gsub(path, "/Users/spacefuture", "~"), "~/src/dotfiles/files", "@dotfiles")
+    end,
     winblend = 0,
     border = true,
+    -- results_title = false,
     -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     color_devicons = true,
@@ -93,7 +141,6 @@ require('telescope').setup({
     -- Developer configurations: Not meant for general override
     -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
-      n = { ["q"] = require("telescope.actions").close },
       i = {
         ["<esc>"] = actions.close,
         -- ["<C-u>"] = false, -- delete line

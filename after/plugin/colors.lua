@@ -1,18 +1,3 @@
-function ColorMyPencils(color)
-  color = color or "oxocarbon-lua"
-
-  -- gruvbox-material options
-  -- vim.g.gruvbox_material_background = "hard"
-  -- vim.g.gruvbox_material_dim_inactive_windows = 1
-  vim.cmd.colorscheme(color)
-  -- color = color or "oxocarbon-lua"
-
-  -- transparent background
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "None" })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None" })
-end
-
--- ColorMyPencils("gruvbox-material")
 require('nightfox').setup({
   options = {
     -- Compiled file's destination location
@@ -20,7 +5,7 @@ require('nightfox').setup({
     compile_file_suffix = "_compiled", -- Compiled file suffix
     transparent = false,     -- Disable setting background
     terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-    dim_inactive = false,    -- Non focused panes set to alternative background
+    dim_inactive = true,    -- Non focused panes set to alternative background
     module_default = true,   -- Default enable value for modules
     styles = {               -- Style to be applied to different syntax groups
       comments = "italic",     -- Value is any valid attr-list value `:help attr-list`
@@ -41,15 +26,22 @@ require('nightfox').setup({
   palettes = {},
   specs = {},
   groups = {
+    all = {
+      TelescopePromptTitle = { fg = "palette.blue" },
+      TelescopePrompt = { bg = "palette.green" },
+      TelescopePreviewTitle = { fg = "palette.pink" },
+      TelescopeBorder = { bg = "palette.bg1" },
+      NormalNC = { fg = "palette.fg0", bg = "palette.bg2" }, -- Non-current windows
+    }
   },
 })
 
--- vim.cmd.colorscheme("gruvbox-material")
--- vim.cmd.background("dark")
-vim.cmd.colorscheme("duskfox")
--- vim.cmd.colorscheme("no-clown-fiesta")
--- vim.cmd.colorscheme("oxocarbon-lua")
--- vim.cmd.colorscheme("catppuccin_mocha")
--- vim.cmd.colorscheme("catppuccin_macchiato")
--- vim.cmd.colorscheme("catppuccin_frappe")
--- vim.cmd.colorscheme("catppuccin_latte")
+-- vim.cmd("hi link TelescopeBorder LineNr")
+-- vim.cmd("hi link TelescopeBorder Constant")
+-- vim.cmd("hi link TelescopeMatching Constant")
+-- vim.cmd("hi link TelescopePromptNormal Normal")
+-- vim.cmd("hi link TelescopePromptPrefix Type")
+-- vim.cmd("hi link TelescopeResultsDiffAdd GitGutterAdd")
+-- vim.cmd("hi link TelescopeResultsDiffChange GitGutterChange")
+-- vim.cmd("hi link TelescopeResultsDiffDelete GitGutterDelete")
+-- vim.cmd("hi link TelescopeResultsDiffUntracked Title")

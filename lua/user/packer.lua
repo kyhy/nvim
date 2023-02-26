@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   }
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {'axkirillov/easypick.nvim', requires = 'nvim-telescope/telescope.nvim'}
 
   -- colors
   use({
@@ -144,6 +145,16 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
+
+  -- vim.cmd.colorscheme("gruvbox-material")
+  -- vim.cmd.background("dark")
+  vim.cmd.colorscheme("duskfox")
+  -- vim.cmd.colorscheme("no-clown-fiesta")
+  -- vim.cmd.colorscheme("oxocarbon-lua")
+  -- vim.cmd.colorscheme("catppuccin_mocha")
+  -- vim.cmd.colorscheme("catppuccin_macchiato")
+  -- vim.cmd.colorscheme("catppuccin_frappe")
+  -- vim.cmd.colorscheme("catppuccin_latte")
 end)
 
 

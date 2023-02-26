@@ -13,18 +13,31 @@ nnoremap('<leader>f', telescope.find_files)
 nnoremap('<leader>ev', function()
   telescope.find_files({
     search_dirs = {'~/.config/nvim'},
-    dynamic_preview_title = "hi",
-    prompt_title = "hi",
-    previewer = false,
+    prompt_title = "Neovim Configs",
   })
 end)
+nnoremap('<leader>ea', function()
+  telescope.find_files({
+    search_dirs = {'~/src/dotfiles/files'},
+    prompt_title = "Dotfiles",
+    hidden = true,
+  })
+end)
+-- nnoremap('<leader>gf', function()
+--   telescope.git_files({
+--     show_untracked = true,
+--     git_command = "git status --porcelain | sed s/^...//"
+--   })
+-- end)
+nnoremap('<leader>gf', ':Easypick Git Changed Files<cr>')
 
 -- vim.keymap.set('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 -- vim.keymap.set('n', '<leader>ev', "<cmd>lua require('telescope.builtin').find_files({search_dirs = {'~/.config/nvim'}})<cr>", opts)
-vim.keymap.set('n', '<leader>ez', ":e ~/.zshrc<cr>", opts)
-vim.keymap.set('n', '<leader>ea', ":e ~/src/dotfiles<cr>", opts)
+
+-- NOTE: Create a file ~/.zshenv and export variable ZDOTDIR=/path/to/dir.
+vim.keymap.set('n', '<leader>ez', ":eo ~/.zshrc<cr>", opts)
+-- vim.keymap.set('n', '<leader>ea', ":eo ~/src/dotfiles<cr>", opts)
 vim.keymap.set('n', '<leader>r', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>');
-vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>bf', "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
 vim.keymap.set('n', '<leader>he', telescope.help_tags, {})
 -- vim.keymap.set('n', '<leader>he', ':Telescope help_tags<cr>', opts)
