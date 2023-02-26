@@ -128,6 +128,7 @@ require('telescope').setup({
     path_display = function(_, path)
       return compose(
         gsubFn('~/src/dotfiles/files', '@dotfiles'),
+        gsubFn('~/.config', '@config'),
         gsubFn('/Users/spacefuture', '~')
       )(path)
     end,

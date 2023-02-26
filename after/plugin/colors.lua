@@ -28,9 +28,13 @@ require('nightfox').setup({
   groups = {
     all = {
       TelescopePromptTitle = { fg = "palette.pink" },
-      TelescopeBorder = { fg = "palette.pink", bg = "palette.bg1" },
+      TelescopePromptPrefix = { fg = "palette.pink" },
+      TelescopeBorder = { fg = "palette.magenta", bg = "palette.bg1" },
       TelescopeMatching = { fg = "palette.red" },
       NormalNC = { fg = "palette.fg0", bg = "palette.bg2" }, -- Non-current windows
+      LineNrAbove = { fg = "palette.fg3" },
+      LineNrBelow = { fg = "palette.fg3" },
+      LineNr = { fg = "#FF1493" },
     }
   },
 })

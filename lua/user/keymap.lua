@@ -6,6 +6,15 @@ local function nnoremap(key, callback)
 end
 
 --———————————————————
+-- START: Undotree
+--———————————————————
+
+nnoremap('<leader>u', vim.cmd.UndotreeToggle)
+
+--—————————————————
+-- END: Undotree
+--—————————————————
+--———————————————————
 -- START: Telescope
 --———————————————————
 local telescope = require('telescope.builtin')
@@ -40,7 +49,7 @@ end)
 --——————————————————
 -- START: Easypick
 --——————————————————
-nnoremap('<leader>p', ':Easypick<cr>')
+nnoremap('<leader>p', vim.cmd.Easypick)
 -- nnoremap('<leader>gf', function()
 --   telescope.git_files({
 --     show_untracked = true,
