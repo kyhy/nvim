@@ -47,7 +47,7 @@ return require('packer').startup(function(use)
   use 'aktersnurra/no-clown-fiesta.nvim'
   use({
     'catppuccin/vim',
-    as = 'catppuccin',
+    -- as = 'catppuccin',
   })
 
   -- UI
@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   }
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
   -- Usability
   use {
     'lewis6991/gitsigns.nvim',
@@ -142,16 +144,6 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
-
-  -- vim.cmd.colorscheme("gruvbox-material")
-  -- vim.cmd.background("dark")
-  vim.cmd.colorscheme("duskfox")
-  -- vim.cmd.colorscheme("no-clown-fiesta")
-  -- vim.cmd.colorscheme("oxocarbon-lua")
-  -- vim.cmd.colorscheme("catppuccin_mocha")
-  -- vim.cmd.colorscheme("catppuccin_macchiato")
-  -- vim.cmd.colorscheme("catppuccin_frappe")
-  -- vim.cmd.colorscheme("catppuccin_latte")
 end)
 
 

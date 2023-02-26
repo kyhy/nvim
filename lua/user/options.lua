@@ -65,7 +65,7 @@ set.gdefault = true     -- in :s operation /g is added automatically
 -- — UI —
 -- ——————
 set.cmdheight = 1                -- height of the command bar
-set.cursorline = true            -- highlight current line
+-- set.cursorline = true            -- highlight current line
 -- set.foldcolumn = true         -- add a bit extra margin to the left
 set.number = true                -- show line numbers in gutter
 set.relativenumber = true        -- show relative line numbers
@@ -82,11 +82,7 @@ set.splitright = true
 
 -- — folding —
 -- ———————————
-set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()"
--- set.foldlevelstart = 4
--- vim.opt.foldmethod = 'indent' -- not as cool as syntax, but faster
--- vim.opt.foldtext = 'v:lua.user.foldtext()'
+-- NOTE: checkout ~/.config/nvim/after/plugin/ufo.lua
 
 -- — files, backups and undo —
 -- ———————————————————————————
