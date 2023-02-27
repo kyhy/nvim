@@ -31,10 +31,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
--- lsp.set_preferences({
---	sign_icons = { }
--- })
-
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings
 })
@@ -46,12 +42,10 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 	vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
 	vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-	vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-	vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
 	vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-	vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+	vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
 	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("i", "<C-h", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 -- (Optional) Configure lua language server for neovim
@@ -59,6 +53,29 @@ lsp.nvim_workspace()
 
 lsp.setup()
 
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua function() end]]
+
 vim.diagnostic.config({
+  virtual_lines = { only_current_line = true },
+  -- virtual_lines = true,
   virtual_text = false,
+  -- virtual_lines = true,
 })
+
+local lsp_lines = require("lsp_lines")
+lsp_lines.setup()
+--
+vim.keymap.set("n", "<C-S>", function()
+  local current = vim.diagnostic.config().virtual_lines
+
+  if current == false then
+    vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+  else 
+    vim.diagnostic.config({ virtual_lines = false })
+  end
+end, { desc = "Toggle lsp_lines" })
+vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })
+vim.keymap.set('n', '<C-N>', '<cmd>lua vim.diagnostic.goto_next({ float = false })<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-P>', '<cmd>lua vim.diagnostic.goto_prev({ float = false })<CR>', { noremap = true, silent = true })
+
