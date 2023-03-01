@@ -38,4 +38,3 @@ hi default link UfoPreviewCursorLine Comment
 hi default link UfoFoldedEllipsis Comment
 hi default link UfoCursorFoldedLine Comment
 
-
