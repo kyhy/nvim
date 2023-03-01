@@ -13,13 +13,16 @@ setGlobalHighlight('InactiveWindow', '#2d2a45')
 
 vim.api.nvim_create_autocmd({"FocusLost"}, {
   callback = function()
-    setLocalHighlight("Normal:InactiveWindow,NormalNC:InactiveWindow")
+    setLocalHighlight("Normal:InactiveWindow,NormalNC:InactiveWindow,StatusLineNC:InactiveWindow")
+
+  -- vim.cmd('highlight clear StatusLineNC')
+  -- vim.cmd('highlight! link StatusLineNC User1')
   end
 })
 
 vim.api.nvim_create_autocmd({"FocusGained", "WinEnter"}, {
   callback = function()
-    setLocalHighlight("Normal:ActiveWindow,NormalNC:InactiveWindow")
+    setLocalHighlight("Normal:ActiveWindow,NormalNC:InactiveWindow,StatusLineNC:ActiveWindow")
   end
 })
 
